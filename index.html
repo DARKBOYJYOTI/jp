@@ -354,7 +354,7 @@
             text-decoration: none;
             padding: 8px 16px;
             border-radius: 20px;
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: #000000;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -366,13 +366,15 @@
         }
 
         .contact-btn:hover {
-            background: linear-gradient(135deg, #2980b9, #1f4e79);
+            background: #333333;
             transform: translateY(-2px);
             border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .contact-btn:active {
             transform: translateY(0) scale(0.95);
+            background: #111111;
         }
 
         .footer {
@@ -586,6 +588,18 @@
             .skill:active {
                 transform: scale(0.95) !important;
             }
+
+            /* Smaller contact buttons for mobile */
+            .contact-buttons {
+                gap: 8px;
+            }
+
+            .contact-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+                min-width: 100px;
+                border-radius: 15px;
+            }
         }
 
         /* Additional animations */
@@ -725,7 +739,9 @@
             instagram: 'https://instagram.com/joyanta.pandit', // Replace with actual Instagram URL
             website: 'https://joyantapandit.com', // Replace with actual website URL
             whatsapp: '+1234567890', // Replace with actual WhatsApp number
-            telegram: 'https://t.me/joyantapandit' // Replace with actual Telegram URL
+            telegram: 'https://t.me/joyantapandit', // Replace with actual Telegram URL
+            youtube: 'https://youtube.com/@joyantapandit', // Replace with actual YouTube URL
+            linkedin: 'https://linkedin.com/in/joyanta-pandit' // Replace with actual LinkedIn URL
         };
 
         // Interactive Particles System
@@ -817,6 +833,16 @@
             } else {
                 window.open(`https://wa.me/${contactInfo.whatsapp}?text=${message}`, '_blank');
             }
+        }
+
+        // Function to open YouTube
+        function openYouTube() {
+            window.open(contactInfo.youtube, '_blank');
+        }
+
+        // Function to open LinkedIn
+        function openLinkedIn() {
+            window.open(contactInfo.linkedin, '_blank');
         }
 
         // Function to open Telegram
@@ -948,12 +974,24 @@
                 link.addEventListener('click', function() {
                     const self = this;
                     if (isMobile()) {
+                        // Force immediate reset of styles
                         setTimeout(() => {
                             self.style.background = 'linear-gradient(135deg, #f8f9fa, #e9ecef)';
                             self.style.color = '#2c3e50';
                             self.style.textShadow = 'none';
+                            self.style.transform = 'scale(1)';
                             self.blur(); // Remove focus
-                        }, 200);
+                        }, 100);
+                    }
+                });
+
+                // Add touchcancel event for better mobile handling
+                link.addEventListener('touchcancel', function() {
+                    if (isMobile()) {
+                        this.style.background = 'linear-gradient(135deg, #f8f9fa, #e9ecef)';
+                        this.style.color = '#2c3e50';
+                        this.style.textShadow = 'none';
+                        this.style.transform = 'scale(1)';
                     }
                 });
 
