@@ -329,6 +329,30 @@
             text-align: center;
         }
 
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .contact-btn:hover {
+            background: linear-gradient(135deg, #2980b9, #1f4e79);
+            transform: translateY(-2px);
+        }
+
         .footer {
             text-align: center;
             padding: 20px;
@@ -376,13 +400,19 @@
                 margin-right: 12px;
             }
 
-            /* Mobile-specific hover fixes */
+            /* Mobile-specific hover fixes with reset functionality */
             .social-link.facebook:hover,
             .social-link.facebook:active,
             .social-link.facebook:focus {
                 background: linear-gradient(135deg, #1877f2, #42a5f5) !important;
                 color: white !important;
                 text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+            }
+
+            .social-link.facebook:not(:hover):not(:active):not(:focus) {
+                background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+                color: #2c3e50 !important;
+                text-shadow: none !important;
             }
 
             .social-link.instagram:hover,
@@ -393,12 +423,24 @@
                 text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
             }
 
+            .social-link.instagram:not(:hover):not(:active):not(:focus) {
+                background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+                color: #2c3e50 !important;
+                text-shadow: none !important;
+            }
+
             .social-link.website:hover,
             .social-link.website:active,
             .social-link.website:focus {
                 background: linear-gradient(135deg, #27ae60, #2ecc71) !important;
                 color: white !important;
                 text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+            }
+
+            .social-link.website:not(:hover):not(:active):not(:focus) {
+                background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+                color: #2c3e50 !important;
+                text-shadow: none !important;
             }
 
             .social-link.whatsapp:hover,
@@ -409,12 +451,36 @@
                 text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
             }
 
+            .social-link.whatsapp:not(:hover):not(:active):not(:focus) {
+                background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+                color: #2c3e50 !important;
+                text-shadow: none !important;
+            }
+
             .social-link.telegram:hover,
             .social-link.telegram:active,
             .social-link.telegram:focus {
                 background: linear-gradient(135deg, #0088cc, #229ed9) !important;
                 color: white !important;
                 text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+            }
+
+            .social-link.telegram:not(:hover):not(:active):not(:focus) {
+                background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+                color: #2c3e50 !important;
+                text-shadow: none !important;
+            }
+
+            /* Contact buttons responsive */
+            .contact-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .contact-btn {
+                width: 100%;
+                max-width: 200px;
+                margin: 0 auto;
             }
 
             .profile-img {
@@ -576,8 +642,10 @@
                         Get In Touch
                     </h2>
                     <div class="contact-info">
-                        <p><i class="fas fa-phone"></i> <a href="javascript:void(0)" onclick="makeCall()" style="color: white; text-decoration: none;">📞 Call Now</a></p>
-                        <p><i class="fas fa-envelope"></i> <a href="javascript:void(0)" onclick="sendEmail()" style="color: white; text-decoration: none;">✉️ Send Email</a></p>
+                        <div class="contact-buttons">
+                            <a href="javascript:void(0)" onclick="makeCall()" class="contact-btn">📞 Call Now</a>
+                            <a href="javascript:void(0)" onclick="sendEmail()" class="contact-btn">✉️ Send Email</a>
+                        </div>
                         <p><i class="fas fa-map-marker-alt"></i> Ready to connect and collaborate</p>
                         <p><i class="fas fa-handshake"></i> Let's create something amazing together!</p>
                     </div>
@@ -800,15 +868,35 @@
                     }
                 });
 
-                // Mobile touch effects
+                // Mobile touch effects with proper reset
                 link.addEventListener('touchstart', function() {
                     this.style.transform = 'scale(0.95)';
                 });
 
                 link.addEventListener('touchend', function() {
+                    const self = this;
                     setTimeout(() => {
-                        this.style.transform = 'scale(1)';
+                        self.style.transform = 'scale(1)';
+                        // Force reset background on mobile after touch
+                        if (isMobile()) {
+                            self.style.background = 'linear-gradient(135deg, #f8f9fa, #e9ecef)';
+                            self.style.color = '#2c3e50';
+                            self.style.textShadow = 'none';
+                        }
                     }, 150);
+                });
+
+                // Add click handler to reset styles on mobile
+                link.addEventListener('click', function() {
+                    const self = this;
+                    if (isMobile()) {
+                        setTimeout(() => {
+                            self.style.background = 'linear-gradient(135deg, #f8f9fa, #e9ecef)';
+                            self.style.color = '#2c3e50';
+                            self.style.textShadow = 'none';
+                            self.blur(); // Remove focus
+                        }, 200);
+                    }
                 });
 
                 // Enhanced press effects for desktop
@@ -867,14 +955,21 @@
                     }
                 });
 
-                // Mobile touch effects
+                // Mobile touch effects with proper reset
                 skill.addEventListener('touchstart', function() {
                     this.style.transform = 'scale(0.95)';
                 });
 
                 skill.addEventListener('touchend', function() {
+                    const self = this;
                     setTimeout(() => {
-                        this.style.transform = 'scale(1)';
+                        self.style.transform = 'scale(1)';
+                        // Force reset any hover effects on mobile
+                        if (isMobile()) {
+                            self.style.filter = 'brightness(1)';
+                            self.style.boxShadow = 'none';
+                            self.blur(); // Remove focus
+                        }
                     }, 150);
                 });
 
