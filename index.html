@@ -376,6 +376,47 @@
                 margin-right: 12px;
             }
 
+            /* Mobile-specific hover fixes */
+            .social-link.facebook:hover,
+            .social-link.facebook:active,
+            .social-link.facebook:focus {
+                background: linear-gradient(135deg, #1877f2, #42a5f5) !important;
+                color: white !important;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+            }
+
+            .social-link.instagram:hover,
+            .social-link.instagram:active,
+            .social-link.instagram:focus {
+                background: linear-gradient(135deg, #e4405f, #f77737, #fcaf45) !important;
+                color: white !important;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+            }
+
+            .social-link.website:hover,
+            .social-link.website:active,
+            .social-link.website:focus {
+                background: linear-gradient(135deg, #27ae60, #2ecc71) !important;
+                color: white !important;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+            }
+
+            .social-link.whatsapp:hover,
+            .social-link.whatsapp:active,
+            .social-link.whatsapp:focus {
+                background: linear-gradient(135deg, #25d366, #128c7e) !important;
+                color: white !important;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+            }
+
+            .social-link.telegram:hover,
+            .social-link.telegram:active,
+            .social-link.telegram:focus {
+                background: linear-gradient(135deg, #0088cc, #229ed9) !important;
+                color: white !important;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+            }
+
             .profile-img {
                 width: 100px;
                 height: 100px;
@@ -384,6 +425,16 @@
 
             .skills {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            /* Mobile skills hover fixes */
+            .skill:hover,
+            .skill:active,
+            .skill:focus {
+                filter: brightness(1.1) !important;
+                box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3) !important;
+                transform: translateY(-2px) !important;
+                color: white !important;
             }
         }
 
@@ -409,6 +460,15 @@
                 width: 80px;
                 height: 80px;
                 font-size: 32px;
+            }
+
+            /* Ensure mobile touch interactions work properly */
+            .social-link:active {
+                transform: scale(0.95) !important;
+            }
+
+            .skill:active {
+                transform: scale(0.95) !important;
             }
         }
 
@@ -516,8 +576,8 @@
                         Get In Touch
                     </h2>
                     <div class="contact-info">
-                        <p><i class="fas fa-phone"></i> <a href="javascript:void(0)" onclick="makeCall()" style="color: white; text-decoration: none;"> Call Now</a></p>
-                        <p><i class="fas fa-envelope"></i> <a href="javascript:void(0)" onclick="sendEmail()" style="color: white; text-decoration: none;">Send Email</a></p>
+                        <p><i class="fas fa-phone"></i> <a href="javascript:void(0)" onclick="makeCall()" style="color: white; text-decoration: none;">📞 Call Now</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="javascript:void(0)" onclick="sendEmail()" style="color: white; text-decoration: none;">✉️ Send Email</a></p>
                         <p><i class="fas fa-map-marker-alt"></i> Ready to connect and collaborate</p>
                         <p><i class="fas fa-handshake"></i> Let's create something amazing together!</p>
                     </div>
@@ -714,7 +774,7 @@
                 isMouseDown = false;
             });
 
-            // Enhanced button animations
+            // Enhanced button animations with mobile support
             const socialLinks = document.querySelectorAll('.social-link');
             socialLinks.forEach((link, index) => {
                 // Staggered entrance animation
@@ -727,29 +787,50 @@
                     link.style.transform = 'translateY(0) scale(1)';
                 }, 200 + index * 100);
 
+                // Desktop hover effects
                 link.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-3px) scale(1.08)';
+                    if (!isMobile()) {
+                        this.style.transform = 'translateY(-3px) scale(1.08)';
+                    }
                 });
 
                 link.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
+                    if (!isMobile()) {
+                        this.style.transform = 'translateY(0) scale(1)';
+                    }
                 });
 
-                // Enhanced press effects
+                // Mobile touch effects
+                link.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+
+                link.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+
+                // Enhanced press effects for desktop
                 link.addEventListener('mousedown', function() {
-                    this.classList.add('pressed');
-                    this.style.transform = 'translateY(-1px) scale(0.95)';
-                    this.querySelector('i').style.animation = 'iconSpin 0.6s ease-in-out';
+                    if (!isMobile()) {
+                        this.classList.add('pressed');
+                        this.style.transform = 'translateY(-1px) scale(0.95)';
+                        this.querySelector('i').style.animation = 'iconSpin 0.6s ease-in-out';
+                    }
                 });
                 
                 link.addEventListener('mouseup', function() {
-                    setTimeout(() => {
-                        this.classList.remove('pressed');
-                        this.style.transform = 'translateY(-3px) scale(1.08)';
-                    }, 200);
+                    if (!isMobile()) {
+                        setTimeout(() => {
+                            this.classList.remove('pressed');
+                            this.style.transform = 'translateY(-3px) scale(1.08)';
+                        }, 200);
+                    }
                 });
 
-                // Periodic pulse animation
+                // Periodic pulse animation (reduced for mobile)
+                const pulseInterval = isMobile() ? 8000 : 3000;
                 setInterval(() => {
                     if (!link.matches(':hover') && Math.random() < 0.1) {
                         link.style.animation = 'zoomPulse 1.5s ease-in-out';
@@ -757,10 +838,10 @@
                             link.style.animation = '';
                         }, 1500);
                     }
-                }, 3000 + Math.random() * 2000);
+                }, pulseInterval + Math.random() * 2000);
             });
 
-            // Skills with improved interactions
+            // Skills with improved mobile interactions
             const skills = document.querySelectorAll('.skill');
             skills.forEach((skill, index) => {
                 // Staggered entrance animation
@@ -773,15 +854,31 @@
                     skill.style.transform = 'translateX(0) scale(1)';
                 }, 300 + index * 150);
 
+                // Desktop hover effects
                 skill.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-2px)';
+                    if (!isMobile()) {
+                        this.style.transform = 'translateY(-2px)';
+                    }
                 });
 
                 skill.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
+                    if (!isMobile()) {
+                        this.style.transform = 'scale(1)';
+                    }
                 });
 
-                // Simple click animation
+                // Mobile touch effects
+                skill.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+
+                skill.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+
+                // Simple click animation for both desktop and mobile
                 skill.addEventListener('click', function() {
                     this.style.transform = 'scale(0.95)';
                     
@@ -790,7 +887,8 @@
                     }, 150);
                 });
 
-                // Random pulse animation
+                // Random pulse animation (less frequent on mobile)
+                const pulseInterval = isMobile() ? 8000 : 4000;
                 setInterval(() => {
                     if (!skill.matches(':hover') && Math.random() < 0.08) {
                         skill.style.animation = 'zoomPulse 1.8s ease-in-out';
@@ -798,7 +896,7 @@
                             skill.style.animation = '';
                         }, 1800);
                     }
-                }, 4000 + Math.random() * 3000);
+                }, pulseInterval + Math.random() * 3000);
             });
 
             // Loading animation
