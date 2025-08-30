@@ -274,6 +274,18 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
+        .social-link.youtube:hover {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-link.linkedin:hover {
+            background: linear-gradient(135deg, #0077b5, #005885);
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
         .social-link.telegram:hover {
             background: linear-gradient(135deg, #0088cc, #229ed9);
             color: white;
@@ -332,7 +344,7 @@
         .contact-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             margin-bottom: 15px;
             flex-wrap: wrap;
         }
@@ -340,17 +352,27 @@
         .contact-btn {
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
             background: linear-gradient(135deg, #3498db, #2980b9);
             transition: all 0.3s ease;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             font-weight: 500;
+            font-size: 0.9rem;
+            border: 2px solid transparent;
+            min-width: 120px;
+            justify-content: center;
         }
 
         .contact-btn:hover {
             background: linear-gradient(135deg, #2980b9, #1f4e79);
             transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-btn:active {
+            transform: translateY(0) scale(0.95);
         }
 
         .footer {
@@ -465,6 +487,34 @@
                 text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
             }
 
+            .social-link.youtube:hover,
+            .social-link.youtube:active,
+            .social-link.youtube:focus {
+                background: linear-gradient(135deg, #ff0000, #cc0000) !important;
+                color: white !important;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+            }
+
+            .social-link.youtube:not(:hover):not(:active):not(:focus) {
+                background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+                color: #2c3e50 !important;
+                text-shadow: none !important;
+            }
+
+            .social-link.linkedin:hover,
+            .social-link.linkedin:active,
+            .social-link.linkedin:focus {
+                background: linear-gradient(135deg, #0077b5, #005885) !important;
+                color: white !important;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+            }
+
+            .social-link.linkedin:not(:hover):not(:active):not(:focus) {
+                background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+                color: #2c3e50 !important;
+                text-shadow: none !important;
+            }
+
             .social-link.telegram:not(:hover):not(:active):not(:focus) {
                 background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
                 color: #2c3e50 !important;
@@ -473,14 +523,14 @@
 
             /* Contact buttons responsive */
             .contact-buttons {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 10px;
             }
 
             .contact-btn {
-                width: 100%;
-                max-width: 200px;
-                margin: 0 auto;
+                padding: 6px 12px;
+                font-size: 0.85rem;
+                min-width: 110px;
             }
 
             .profile-img {
@@ -613,6 +663,14 @@
                         <a href="javascript:void(0)" onclick="openWhatsApp()" class="social-link whatsapp">
                             <i class="fab fa-whatsapp"></i>
                             <span>WhatsApp Chat</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openYouTube()" class="social-link youtube">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube Channel</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openLinkedIn()" class="social-link linkedin">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span>LinkedIn Profile</span>
                         </a>
                         <a href="javascript:void(0)" onclick="openTelegram()" class="social-link telegram">
                             <i class="fab fa-telegram-plane"></i>
