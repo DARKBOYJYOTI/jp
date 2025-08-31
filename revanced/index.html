@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ReVanced Downloader</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Local PNG Icon Styling */
+    .card-icon img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      object-fit: cover;
+    }
+    .card-icon:hover img {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Dark mode support for icons */
+    [data-theme="dark"] .card-icon img {
+      filter: brightness(0.9);
+    }
+    [data-theme="dark"] .card-icon:hover img {
+      filter: brightness(1);
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -24,7 +46,9 @@
       <!-- Cards will be populated in HTML for accessibility, JS will fill downloads -->
       <article class="card card-youtube" id="card-youtube">
         <div class="card-head">
-          <div class="card-icon">📺</div>
+          <div class="card-icon">
+            <img src="icons/youtube.png" alt="YouTube" loading="lazy">
+          </div>
           <h3>YouTube (ReVanced)</h3>
         </div>
         <div class="card-body">
@@ -35,7 +59,9 @@
 
       <article class="card card-ytmusic" id="card-ytmusic">
         <div class="card-head">
-          <div class="card-icon">🎵</div>
+          <div class="card-icon">
+            <img src="icons/youtube-music.png" alt="YouTube Music" loading="lazy">
+          </div>
           <h3>YouTube Music (ReVanced)</h3>
         </div>
         <div class="card-body">
@@ -46,7 +72,9 @@
 
       <article class="card card-photos" id="card-photos">
         <div class="card-head">
-          <div class="card-icon">📷</div>
+          <div class="card-icon">
+            <img src="icons/google-photos.png" alt="Google Photos" loading="lazy">
+          </div>
           <h3>Google Photos (ReVanced)</h3>
         </div>
         <div class="card-body">
@@ -57,7 +85,9 @@
 
       <article class="card card-spotify" id="card-spotify">
         <div class="card-head">
-          <div class="card-icon">🎧</div>
+          <div class="card-icon">
+            <img src="icons/spotify.png" alt="Spotify" loading="lazy">
+          </div>
           <h3>Spotify (Universal)</h3>
         </div>
         <div class="card-body">
@@ -68,7 +98,9 @@
 
       <article class="card card-microg" id="card-microg">
         <div class="card-head">
-          <div class="card-icon">🟢</div>
+          <div class="card-icon">
+            <img src="icons/microg.png" alt="MicroG" loading="lazy">
+          </div>
           <h3>MicroG (Required)</h3>
         </div>
         <div class="card-body">
@@ -112,4 +144,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
