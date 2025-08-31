@@ -11,32 +11,7 @@
             linkedin: 'https://www.linkedin.com/in/jyoti-karmakar-42475b117/' // Replace with actual LinkedIn URL
         };
 
-        // Interactive Particles System
-        function createParticle(x, y) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = x + 'px';
-            particle.style.top = y + 'px';
-            
-            // Random direction and distance
-            const angle = Math.random() * Math.PI * 2;
-            const distance = Math.random() * 50 + 20;
-            const dx = Math.cos(angle) * distance;
-            const dy = Math.sin(angle) * distance;
-            
-            particle.style.setProperty('--dx', dx + 'px');
-            particle.style.setProperty('--dy', dy + 'px');
-            
-            // Add to container
-            document.getElementById('particles').appendChild(particle);
-            
-            // Remove after animation
-            setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.parentNode.removeChild(particle);
-                }
-            }, 3000);
-        }
+        // No particles system needed for better performance
 
 
 
@@ -120,39 +95,8 @@
         }
 
         // Add smooth scrolling and interactive effects
+        // Initialize page without heavy animations
         document.addEventListener('DOMContentLoaded', () => {
-            // Set header background
-            const header = document.querySelector('.header');
-            header.style.background = 'linear-gradient(135deg, #2c3e50, #3498db)';
-
-            // Simple entrance animation for social links
-            const socialLinks = document.querySelectorAll('.social-link');
-            socialLinks.forEach((link, index) => {
-                link.style.opacity = '0';
-                setTimeout(() => {
-                    link.style.transition = 'opacity 0.3s ease';
-                    link.style.opacity = '1';
-                }, 100 + index * 50);
-            });
-
-            // Simple entrance animation for skills
-            const skills = document.querySelectorAll('.skill');
-            skills.forEach((skill, index) => {
-                skill.style.opacity = '0';
-                setTimeout(() => {
-                    skill.style.transition = 'opacity 0.3s ease';
-                    skill.style.opacity = '1';
-                }, 100 + index * 50);
-            });
-
-            // Loading animation
-            const portfolioCard = document.querySelector('.portfolio-card');
-            portfolioCard.style.opacity = '0';
-            portfolioCard.style.transform = 'translateY(30px)';
-            
-            setTimeout(() => {
-                portfolioCard.style.transition = 'all 0.8s ease-out';
-                portfolioCard.style.opacity = '1';
-                portfolioCard.style.transform = 'translateY(0)';
-            }, 100);
+            // Simple fade in for the whole page
+            document.body.style.opacity = '1';
         });
