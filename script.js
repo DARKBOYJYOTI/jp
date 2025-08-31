@@ -121,216 +121,28 @@
 
         // Add smooth scrolling and interactive effects
         document.addEventListener('DOMContentLoaded', () => {
-            // Interactive Header Effects
+            // Set header background
             const header = document.querySelector('.header');
-            const particles = document.getElementById('particles');
-            let isMouseDown = false;
-
-            // Set initial background gradient
             header.style.background = 'linear-gradient(135deg, #2c3e50, #3498db)';
 
-            // Throttle function for better performance
-            const throttle = (func, limit) => {
-                let inThrottle;
-                return function(...args) {
-                    if (!inThrottle) {
-                        func.apply(this, args);
-                        inThrottle = true;
-                        setTimeout(() => inThrottle = false, limit);
-                    }
-                }
-            };
-
-            // Mouse/Touch interaction for header
-            let isInteracting = false;
-            const handleInteraction = throttle((e) => {
-                const rect = header.getBoundingClientRect();
-                const x = (e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0)) - rect.left;
-                const y = (e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : 0)) - rect.top;
-                
-                // Create one particle with optimized timing
-                createParticle(x + (Math.random() - 0.5) * 20, y + (Math.random() - 0.5) * 20);
-                
-                // Dynamic background gradient shift only when interacting
-                if (isInteracting) {
-                    const gradientX = (x / rect.width) * 100;
-                    header.style.background = `linear-gradient(${gradientX}deg, #2c3e50, #3498db, #9b59b6)`;
-                }
-            }, 100);
-
-            // Add event listeners for mouse and touch events
-            const setupHeaderInteractions = () => {
-                header.addEventListener('mousemove', handleInteraction);
-                header.addEventListener('click', handleInteraction);
-
-                header.addEventListener('touchstart', (e) => {
-                    isMouseDown = true;
-                    isInteracting = true;
-                    handleInteraction(e);
-                });
-
-                header.addEventListener('touchmove', (e) => {
-                    if (isMouseDown) {
-                        e.preventDefault();
-                        handleInteraction(e);
-                    }
-                });
-
-                header.addEventListener('touchend', () => {
-                    isMouseDown = false;
-                    isInteracting = false;
-                    // Reset to initial gradient
-                    header.style.background = 'linear-gradient(135deg, #2c3e50, #3498db)';
-                });
-
-                // Mouse enter/leave events to control interaction state
-                header.addEventListener('mouseenter', () => {
-                    isInteracting = true;
-                });
-
-                header.addEventListener('mouseleave', () => {
-                    isInteracting = false;
-                    // Reset to initial gradient
-                    header.style.background = 'linear-gradient(135deg, #2c3e50, #3498db)';
-                });
-            };
-
-            setupHeaderInteractions();
-
-            // Enhanced button animations with mobile support
+            // Simple entrance animation for social links
             const socialLinks = document.querySelectorAll('.social-link');
             socialLinks.forEach((link, index) => {
-                // Staggered entrance animation
                 link.style.opacity = '0';
-                link.style.transform = 'translateY(20px) scale(0.8)';
-                
                 setTimeout(() => {
-                    link.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    link.style.transition = 'opacity 0.3s ease';
                     link.style.opacity = '1';
-                    link.style.transform = 'translateY(0) scale(1)';
-                }, 200 + index * 100);
-
-                // Desktop hover effects
-                link.addEventListener('mouseenter', function() {
-                    if (!isMobile()) {
-                        this.style.transform = 'translateY(-3px) scale(1.08)';
-                    }
-                });
-
-                link.addEventListener('mouseleave', function() {
-                    if (!isMobile()) {
-                        this.style.transform = 'translateY(0) scale(1)';
-                    }
-                });
-
-                // Optimized mobile touch effects
-                const handleTouchStart = function() {
-                    if (isMobile()) {
-                        this.style.transform = 'scale(0.95)';
-                    }
-                };
-
-                const handleTouchEnd = function() {
-                    if (isMobile()) {
-                        setTimeout(() => {
-                            this.style.transform = 'scale(1)';
-                            this.blur();
-                        }, 150);
-                    }
-                };
-
-                link.addEventListener('touchstart', handleTouchStart);
-                link.addEventListener('touchend', handleTouchEnd);
-                link.addEventListener('click', handleTouchEnd);
-
-                // Enhanced press effects for desktop
-                link.addEventListener('mousedown', function() {
-                    if (!isMobile()) {
-                        this.style.transform = 'translateY(-1px) scale(0.95)';
-                    }
-                });
-                
-                link.addEventListener('mouseup', function() {
-                    if (!isMobile()) {
-                        setTimeout(() => {
-                            this.style.transform = 'translateY(-3px) scale(1.08)';
-                        }, 200);
-                    }
-                });
-
-                // Single animation on load
-                setTimeout(() => {
-                    if (!link.matches(':hover')) {
-                        link.style.animation = 'zoomPulse 1.5s ease-in-out';
-                        setTimeout(() => {
-                            link.style.animation = '';
-                        }, 1500);
-                    }
-                }, index * 200);
+                }, 100 + index * 50);
             });
 
-            // Skills with improved mobile interactions
+            // Simple entrance animation for skills
             const skills = document.querySelectorAll('.skill');
             skills.forEach((skill, index) => {
-                // Staggered entrance animation
                 skill.style.opacity = '0';
-                skill.style.transform = 'translateX(-20px) scale(0.7)';
-                skill.style.transition = 'all 0.6s ease';
-                
                 setTimeout(() => {
+                    skill.style.transition = 'opacity 0.3s ease';
                     skill.style.opacity = '1';
-                    skill.style.transform = 'translateX(0) scale(1)';
-                }, 300 + index * 150);
-
-                // Desktop hover effects
-                skill.addEventListener('mouseenter', function() {
-                    if (!isMobile()) {
-                        this.style.transform = 'translateY(-2px)';
-                    }
-                });
-
-                skill.addEventListener('mouseleave', function() {
-                    if (!isMobile()) {
-                        this.style.transform = 'scale(1)';
-                    }
-                });
-
-                // Mobile touch effects with proper reset
-                skill.addEventListener('touchstart', function() {
-                    this.style.transform = 'scale(0.95)';
-                });
-
-                skill.addEventListener('touchend', function() {
-                    const self = this;
-                    setTimeout(() => {
-                        self.style.transform = 'scale(1)';
-                        // Force reset any hover effects on mobile
-                        if (isMobile()) {
-                            self.style.filter = 'brightness(1)';
-                            self.style.boxShadow = 'none';
-                            self.blur(); // Remove focus
-                        }
-                    }, 150);
-                });
-
-                // Simple click animation for both desktop and mobile
-                skill.addEventListener('click', function() {
-                    this.style.transform = 'scale(0.95)';
-                    
-                    setTimeout(() => {
-                        this.style.transform = 'scale(1)';
-                    }, 150);
-                });
-
-                // One-time entrance animation
-                setTimeout(() => {
-                    if (!skill.matches(':hover')) {
-                        skill.style.animation = 'zoomPulse 1.8s ease-in-out';
-                        setTimeout(() => {
-                            skill.style.animation = '';
-                        }, 1800);
-                    }
-                }, 300 + index * 150);
+                }, 100 + index * 50);
             });
 
             // Loading animation
