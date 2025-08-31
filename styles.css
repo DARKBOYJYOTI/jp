@@ -450,6 +450,9 @@
 
             .social-link {
                 padding: 12px 15px;
+                touch-action: manipulation;
+                -webkit-touch-callout: none;
+                -webkit-tap-highlight-color: transparent;
             }
 
             .social-link i {
@@ -457,12 +460,10 @@
                 margin-right: 12px;
             }
 
-            /* Simplified mobile hover states */
+            /* Disable scale transforms on mobile */
             .social-link:active {
-                background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-                color: #2c3e50;
-                text-shadow: none;
-                transform: scale(0.95);
+                transform: none;
+                opacity: 0.8;
             }
 
             /* Contact buttons responsive */
@@ -513,13 +514,23 @@
                 font-size: 32px;
             }
 
-            /* Ensure mobile touch interactions work properly */
-            .social-link:active {
-                transform: scale(0.95) !important;
+            /* Optimized mobile touch interactions */
+            .social-link:active,
+            .skill:active,
+            .contact-btn:active,
+            .foss-project:active {
+                transform: none !important;
+                opacity: 0.8;
             }
 
-            .skill:active {
-                transform: scale(0.95) !important;
+            /* Add touch optimizations for all interactive elements */
+            .social-link,
+            .skill,
+            .contact-btn,
+            .foss-project {
+                touch-action: manipulation;
+                -webkit-touch-callout: none;
+                -webkit-tap-highlight-color: transparent;
             }
 
             /* Smaller contact buttons for mobile */
