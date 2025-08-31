@@ -96,7 +96,7 @@
 
         // Add smooth scrolling and interactive effects
         // Initialize page without heavy animations
+        // Optimize page load performance
         document.addEventListener('DOMContentLoaded', () => {
-            // Simple fade in for the whole page
-            document.body.style.opacity = '1';
+            document.body.style.visibility = 'visible';
         });
