@@ -616,11 +616,10 @@
 
         /* FOSS Projects Styling */
         .foss-projects {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
             margin-top: 20px;
-            justify-content: center;
         }
 
         .foss-project {
@@ -634,7 +633,7 @@
             overflow: hidden;
             margin: 5px 0;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
-            width: 250px;
+            width: 100%;
         }
 
         .foss-project a {
@@ -669,12 +668,11 @@
         /* Mobile styles for FOSS Projects */
         @media (max-width: 768px) {
             .foss-projects {
-                width: 100%;
+                grid-template-columns: 1fr;
                 gap: 12px;
             }
 
             .foss-project {
-                width: 100%;
                 margin: 0;
             }
 
@@ -688,10 +686,6 @@
         @media (max-width: 480px) {
             .foss-projects {
                 gap: 10px;
-            }
-
-            .foss-project {
-                width: 100%;
             }
 
             .foss-project a {
