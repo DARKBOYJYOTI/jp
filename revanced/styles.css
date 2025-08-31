@@ -53,7 +53,7 @@ body{
   padding:14px 18px; max-width:var(--container-w); margin:0 auto;
   gap:12px; border-bottom:1px solid var(--border);
 }
-.site-header .title{font-weight:700; font-size:28px}
+.site-header .title{font-weight:700; font-size:38px}
 .right{display:flex; align-items:center; gap:10px}
 
 /* Buttons/links in header */
@@ -102,7 +102,9 @@ body{
 
 /* Footer */
 .site-footer{max-width:var(--container-w); margin:22px auto; padding:12px; color:var(--muted); text-align:center; border-top:1px solid var(--border)}
-
+.site-footer a {
+  color: green;
+}
 /* Modal */
 .modal{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; padding:20px; visibility:hidden; opacity:0; transition:all .18s}
 .modal[aria-hidden="false"]{visibility:visible; opacity:1; background: rgba(2,6,12,0.56)}
@@ -117,4 +119,3 @@ body{
   .card-icon{font-size:26px}
   .downloads a{padding:8px 10px; font-size:13px}
 }
-
