@@ -408,37 +408,38 @@
         .contact-buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 12px;
+            margin: 15px 0;
             flex-wrap: wrap;
+        }
+
+        .contact-btn i {
+            margin-right: 6px;
+            font-size: 0.9rem;
         }
 
         .contact-btn {
             color: white;
             text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 8px 12px;
+            border-radius: 8px;
             background: #000000;
-            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             font-weight: 500;
             font-size: 0.9rem;
-            border: 2px solid transparent;
-            min-width: 120px;
+            min-width: 110px;
             justify-content: center;
+            margin: 3px;
         }
 
         .contact-btn:hover {
-            background: #333333;
-            transform: translateY(-2px);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0.9;
+            background: #222222;
         }
 
         .contact-btn:active {
-            transform: translateY(0) scale(0.95);
-            background: #111111;
+            transform: scale(0.98);
         }
 
         .footer {
