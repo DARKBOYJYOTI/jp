@@ -403,6 +403,7 @@
             padding: 25px;
             border-radius: 12px;
             text-align: center;
+            word-spacing: 2px;
         }
 
         .contact-buttons {
@@ -431,7 +432,7 @@
             min-width: 110px;
             justify-content: center;
             margin: 3px;
-            word-spacing: 2px;
+            
         }
 
         .contact-btn:hover {
