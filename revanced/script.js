@@ -42,6 +42,23 @@ function classifyAsset(nameLower) {
   return "Signed APk";
 }
 
+// Format date to DD/MM/YYYY HH:MM AM/PM
+function formatDateDDMMYYYY(date) {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  
+  let hours = date.getHours();
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  
+  hours = hours % 12;
+  hours = hours ? hours : 12; // 0 should be 12
+  const formattedHours = String(hours).padStart(2, '0');
+  
+  return `${day}/${month}/${year} ${formattedHours}:${minutes} ${ampm}`;
+}
+
 // Try to find assets across releases pages until matches found (fallback)
 async function findAssetsAcrossReleases(repo, assetMatchFn, maxPages = 5) {
   for (let page = 1; page <= maxPages; page++) {
@@ -106,7 +123,7 @@ function renderAssets(containerId, metaId, releaseInfo, cardClass) {
   }
   if (meta) {
     const date = new Date(release.published_at || release.created_at);
-    meta.textContent = `Release: ${release.name || release.tag_name} • ${date.toLocaleString()}`;
+    meta.textContent = `Release: ${release.name || release.tag_name} • ${formatDateDDMMYYYY(date)}`;
   }
 }
 
