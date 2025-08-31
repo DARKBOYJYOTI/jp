@@ -53,7 +53,7 @@ body{
   padding:14px 18px; max-width:var(--container-w); margin:0 auto;
   gap:12px; border-bottom:1px solid var(--border);
 }
-.site-header .title{font-weight:700; font-size:38px}
+.site-header .title{font-weight:700; font-size:28px}
 .right{display:flex; align-items:center; gap:10px}
 
 /* Buttons/links in header */
@@ -119,3 +119,4 @@ body{
   .card-icon{font-size:26px}
   .downloads a{padding:8px 10px; font-size:13px}
 }
+
